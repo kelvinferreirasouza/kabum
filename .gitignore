@@ -1,0 +1,7 @@
+vscode/
+.vscode/
+.idea
+nbproject/
+vendor/
+application/config/
+composer.lock

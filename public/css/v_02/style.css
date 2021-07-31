@@ -1,0 +1,393 @@
+@font-face {
+    font-family: 'Roboto-Google';
+    src: url('../../fonts/Roboto-Regular.ttf');
+}
+
+* {
+    font-family: 'Roboto-Google', sans-serif;
+}
+
+.box-body {
+    padding: 15px;
+}
+
+.btn-ops {
+    background-color: #e67821;
+    border-color: #e67821;
+    color: #fff;
+}
+
+.btn-ops:hover {
+    color: #fff;
+}
+
+.btn-ops:disabled {
+    background-color: #b6601b;
+    border-color: #b6601b;
+    color: #fff;
+}
+
+.box-title {
+    font-family: 'Roboto-Google', sans-serif !important;
+    z-index: auto;
+}
+
+.box-header .box-title {
+    display: inline-block;
+    margin: 0;
+    font-weight: 400;
+    vertical-align: middle;
+}
+
+.subtitle {
+    display: block;
+    margin-top: 8px;
+    font-size: 65%;
+    font-weight: 400;
+}
+
+.display-block {
+    display: block;
+}
+
+.text-align-start {
+    text-align: start;
+}
+
+.box {
+    font-family: 'Roboto-Google', sans-serif !important;
+    position: relative;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 0px;
+    -webkit-transition: .5s;
+    transition: .5s;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-shadow: 0 3px 5px 1px rgb(0 0 0 / 5%);
+    box-shadow: 0 3px 5px 1px rgb(0 0 0 / 5%);
+}
+
+.btn-circle {
+    text-align: center;
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+    border-radius: 50%;
+    -webkit-mask-image: none;
+    cursor: pointer;
+    transform: translateZ(0);
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    transition: .3s ease-out;
+    padding: 0;
+    margin-bottom: 5px !important;
+    outline: none;
+}
+
+.btn {
+    border-radius: 5px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    line-height: inherit;
+    padding: 8px 16px;
+    font-size: 1.3rem;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    transition: .3s ease-out;
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+.btn-new:active:focus,
+.btn-new:focus {
+    box-shadow: 0 3px 5px 1px rgb(0 0 0 / 5%);
+    outline: none;
+    color: #fff;
+}
+
+.btn-new:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+    color: #fff;
+}
+
+.btn-circle:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+    color: #fff;
+}
+
+.margin-btn-circle {
+    margin-right: 2px !important;
+}
+
+.cliente-titulo {
+    color: #777777;
+}
+
+.line-height-default {
+    line-height: 1.9 !important;
+}
+
+.icone-fa-left {
+    margin-left: 5px;
+}
+
+.icone-fa-right {
+    margin-right: 5px !important;
+}
+
+.obrigatorio {
+    color: rgb(255, 0, 0);
+    font-weight: 800;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.p-filtros {
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+.td-id {
+    width: 100px;
+    text-align: center;
+}
+
+.td-status {
+    width: 150px;
+    text-align: center;
+}
+
+.td-acoes,
+.td-cnpj {
+    width: 180px;
+    text-align: center;
+}
+
+.btn-pesquisar-label {
+    margin-top: 23px;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.only-padding-bottom {
+    padding: 0 0 10px 0;
+}
+
+.only-padding-top {
+    padding: 10px 0 0 0 !important;
+}
+
+.position-relative {
+    position: relative;
+}
+
+
+/*botão que "escolher arqvuivo" personalizado*/
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.customFileInput input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.customFileInput .button,
+.customFileInput .fileName {
+    float: left;
+    cursor: pointer;
+    font-size: 0.9em;
+    line-height: 30px;
+    padding: 0 15px;
+}
+
+.hr-gradient-cadastros {
+    border: 1px;
+    height: 1px;
+    margin: 0px;
+    background-image: linear-gradient(to right, rgb(155, 155, 155), transparent);
+}
+
+.title-endereco-cadastro-cliente {
+    font-size: 20px;
+    margin: 10px;
+    color: #505050;
+    font-weight: 500;
+    margin: 10px 10px 5px 0px;
+}
+
+.box-hr-cadastro-clientes {
+    margin-top: 40px;
+    margin-bottom: 35px;
+}
+
+.label-radio-tipo-cliente {
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.btn-menu-abas {
+    margin: 5px;
+}
+
+.box-input-negociacao-profissional {
+    margin: 0px 0px 10px 0px !important;
+    padding: 0px 25px 0px 0px;
+}
+
+.box-input-negociacao-profissional label {
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.box-input-negociacao-profissional input {
+    font-size: 13px;
+}
+
+.config-proposta-separator {
+    margin: 30px 0px 30px 0px;
+    width: 100%;
+}
+
+.box-input-negociacao-profissional button {
+    margin-top: 33px;
+}
+
+.swal-configuracao-tipo-negociacao {
+    overflow: auto;
+    max-height: 73vh;
+    padding: 30px;
+}
+
+.tabela-categorias-profissional td {
+    vertical-align: middle !important;
+}
+
+.section-small {
+    min-height: 100px !important;
+}
+
+.title-modal-bairros {
+    display: block;
+    text-align: start;
+    margin: 10px 0;
+}
+
+.box-checks-bairros {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.box-check-bairro,
+.box-check-periodo {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.txt-descricao-os {
+    min-height: 175px !important;
+}
+
+.chk-bairros-atendidos,
+.chk-periodos-servico {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px !important;
+}
+
+.displayFlex {
+    display: flex;
+    align-items: center;
+}
+
+.displayFlexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.span-title-chk {
+    margin-top: 5px;
+}
+
+.tabela-regioes-profissional td {
+    vertical-align: middle !important;
+}
+
+.btn-add-label {
+    font-size: 12px;
+    color: #088A29;
+    cursor: pointer;
+}
+
+.padding-not-top {
+    padding: 0 10px 10px 15px;
+}
+
+.textarea {
+    min-height: 150px;
+    padding: 5px;
+    border-color: #d2d2d2;
+    border-radius: 5px;
+}
+
+.box-ipt-data-servico {
+    margin-left: 20px;
+}
+
+.ipt-data-servico {
+    width: 150px !important;
+}
+
+.btn-enviar-fotos {
+    margin-top: 20px;
+}
+
+@media screen and ( min-width: 1500px) {
+    .content-wrapper {
+        min-height: 900px !important;
+    }
+}
