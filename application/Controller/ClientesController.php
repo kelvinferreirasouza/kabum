@@ -45,7 +45,7 @@ class ClientesController extends FrontController
     public function adicionar()
     {
         $Menu = new Menu();
-        $menu = $Menu->getMenuByRota($this->rota);
+        $menu = $Menu->getMenuByRota($this->rota . '/adicionar');
         $estados = (new Estado())->getEstados();
 
         $this->addScript(URL . 'js/' . VERSAO . '/cliente.js');
@@ -80,7 +80,7 @@ class ClientesController extends FrontController
 
             $id_cliente = (new Cliente())->insertCliente($_POST);
 
-            header('location: ' . URL . $this->rota . "/editar/" . $id_cliente);
+            header('location: ' . URL . $this->rota . "/editar/" . $id_cliente . '?cadastrado=true');
             exit;
         }
     }

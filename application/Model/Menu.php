@@ -27,7 +27,7 @@ class Menu extends Model
 
     public function getSubmenuByMenu($id_sub)
     {
-        $usuario = (new Usuario())->getUsuarioById($_SESSION['ops']['id']);
+        $usuario = (new Usuario())->getUsuarioById($_SESSION['kabum']['id']);
 
         $sql = "SELECT
                     *

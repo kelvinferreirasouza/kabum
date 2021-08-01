@@ -4,6 +4,11 @@ use Kabum\libs\Util;
 
 ?>
 
+<!-- ARQUIVOS NECESSÁRIOS PARA O TOAST FUNCIONAR! -->
+<link rel="stylesheet" href="<?= URL . "css/" . VERSAO . "/toastr.min.css" ?>">
+<script src="<?= URL . "js/" . VERSAO . "/jquery.min.js" ?>"></script>
+<script src="<?= URL . "js/" . VERSAO . "/toastr.min.js" ?>"></script>
+
 <div class="content-wrapper">
     <section class="content container-fluid">
         <div class="row">
@@ -53,7 +58,7 @@ use Kabum\libs\Util;
 
                 <div class="box box-primary form-group collapsed-box">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><i class="fas fa-map-marked-alt icone-fa-right"></i> Cadastrar Endereço</h3>
+                        <h3 class="box-title box-title-endereco"><i class="fas fa-map-marked-alt icone-fa-right"></i> Cadastrar Endereço</h3>
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -152,3 +157,9 @@ use Kabum\libs\Util;
             </div>
     </section>
 </div>
+
+<?php if (isset($_GET['cadastrado']) && $_GET['cadastrado'] == 'true') { ?>
+    <script>
+        toastSucessMessage('Cliente cadastrado com sucesso!');
+    </script>
+<?php } ?>

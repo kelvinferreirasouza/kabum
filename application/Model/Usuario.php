@@ -10,7 +10,7 @@ class Usuario extends Model
     public function checaSessao()
     {
         session_start();
-        if (isset($_SESSION['ops']['id']) == false) {
+        if (isset($_SESSION['kabum']['id']) == false) {
             header('location: ' . URL . 'login/index');
             exit;
         }
