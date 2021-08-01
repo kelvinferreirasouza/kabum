@@ -6,9 +6,7 @@ use Kabum\Core\Controller;
 use Kabum\Model\Menu;
 use Kabum\Model\GerenciaPost;
 use Kabum\Model\ModelGenerico;
-use Kabum\Model\Pessoa;
 use Kabum\Model\Estado;
-use Kabum\Model\Usuario;
 use Kabum\Model\Cliente;
 
 use Kabum\libs\Util;
@@ -27,22 +25,17 @@ class ClientesController extends FrontController
         $this->addScript(URL . "js/" . VERSAO . "/cep.js");
         $this->addScript(URL . "js/" . VERSAO . "/estado-cidade.js");
         $this->addScript(URL . "js/" . VERSAO . "/cadastro_cliente.js");
-        $this->addScript(URL . "js/" . VERSAO . "/cnpj.js");
-        $this->addScript(URL . "js/" . VERSAO . "/ajax-email-usuario.js");
     }
 
     public function index()
     {
-        parent::secure_admin();
-
         $Menu = new Menu();
-        $Estado = new Estado();
 
         $menu = $Menu->getMenuByRota($this->rota);
         $paginacao = (new ModelGenerico())->paginacao();
 
-        $clientes = (new Pessoa())->getPessoas(10, $paginacao, $_GET);
-        $paginacao_proximo = (new Pessoa())->getPessoas(10, $paginacao + 1, $_GET);
+        $clientes = (new Cliente())->getClientes(10, $paginacao, $_GET);
+        $paginacao_proximo = (new Cliente())->getClientes(10, $paginacao + 1, $_GET);
 
         require APP . 'view/_templates/header.php';
         require APP . 'view/' . $this->dir . '/index.php';
@@ -51,82 +44,49 @@ class ClientesController extends FrontController
 
     public function adicionar()
     {
-        parent::secure_admin();
-
         $Menu = new Menu();
-
         $menu = $Menu->getMenuByRota($this->rota);
         $estados = (new Estado())->getEstados();
-        $cidades = (new ModelGenerico())->getAllItensSemAtivo('cidade');
-        $tiposCliente = (new Pessoa())->getTiposCliente();
+
+        $this->addScript(URL . 'js/' . VERSAO . '/cliente.js');
+        $this->addScript(URL . 'js/' . VERSAO . '/validacoes.js');
 
         require APP . 'view/_templates/header.php';
         require APP . 'view/' . $this->dir . '/adicionar.php';
         require APP . 'view/_templates/footer.php';
     }
 
-    public function editar($id)
-    {
-        parent::secure_admin();
-
-        $Menu = new Menu();
-        $menu = $Menu->getMenuByRota($this->rota);
-        $estados = (new Estado())->getEstados();
-
-        $obj = (new Pessoa())->getPessoaById($id);
-        $uf_estado = (new Estado())->getEstadoByID($obj->id_estado);
-        $tiposCliente = (new Pessoa())->getTiposCliente();
-
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/' . $this->dir . '/adicionar.php';
-        require APP . 'view/_templates/footer.php';
-    }
-
-    public function meuCadastro()
+    public function editar($id_cliente)
     {
         $Menu = new Menu();
-        $id = $_SESSION["ops"]["id_pessoa"];
-        $menu = $Menu->getMenuByRota($this->rota . '/meuCadastro');
-        $estados = (new Estado())->getEstados();
-        $tiposCliente = (new Pessoa())->getTiposCliente();
+        $menu = $Menu->getMenuByRota('#clientes');
 
-        $obj = (new Pessoa())->getPessoaById($id);
+        $cliente = (new ModelGenerico())->getItemByID($id_cliente, $this->tabela);
+        $cliente_enderecos = (new Cliente())->getEnderecosByCliente($id_cliente);
+
+        $estados = (new Estado())->getEstados();
+
+        $this->addScript(URL . 'js/' . VERSAO . '/cliente.js');
+        $this->addScript(URL . 'js/' . VERSAO . '/validacoes.js');
 
         require APP . 'view/_templates/header.php';
-        require APP . 'view/' . $this->dir . '/adicionar.php';
+        require APP . 'view/' . $this->dir . '/editar.php';
         require APP . 'view/_templates/footer.php';
     }
 
     public function adicionarCliente()
     {
-        if (isset($_POST['nome']) && $_POST['nome'] != "" || isset($_POST['nome_empresa']) && $_POST['nome_empresa']) {
-            (new Cliente())->insertCliente($_POST);
+        if (Util::validaCampos(['nome', 'cpf', 'rg', 'telefone', 'data_nascimento'], $_POST)) {
+
+            $id_cliente = (new Cliente())->insertCliente($_POST);
+
+            header('location: ' . URL . $this->rota . "/editar/" . $id_cliente);
+            exit;
         }
-
-        header('location: ' . URL . $this->rota);
-        exit;
-    }
-
-    public function editarCliente($id)
-    {
-        $Obj = new ModelGenerico();
-        $obj = $Obj->getItemByID($id, $this->tabela);
-
-        if ($_POST['nome'] != "" || isset($_POST['nome_empresa']) && $_POST['nome_empresa']) {
-
-            $_POST['id'] = $id;
-
-            (new Cliente())->updateCliente($_POST);
-        }
-
-        header('location: ' . URL . $this->rota);
-        exit;
     }
 
     public function desativar($id)
     {
-        parent::secure_admin();
-
         if (isset($id)) {
 
             if (isset($_POST['desativar'])) {
@@ -144,9 +104,8 @@ class ClientesController extends FrontController
 
     public function ativar($id)
     {
-        parent::secure_admin();
-
         if (isset($id)) {
+
             if (isset($_POST['ativar'])) {
 
                 (new ModelGenerico())->ativarItem($id, $this->tabela);

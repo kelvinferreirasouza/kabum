@@ -55,6 +55,11 @@
 				affixesStay: false
 			});
 
+			$("[date-mask]").inputmask({
+                mask: ['99/99/9999'],
+                keepStatic: true
+            });
+
 			$("[cpfcnpj_mask]").inputmask({
 				mask: ['999.999.999-99', '99.999.999/9999-99'],
 				keepStatic: true

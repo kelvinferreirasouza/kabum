@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="box-footer">
-                            <button type="button" class="btn btn-danger" onclick='location.href = "<?= URL . $this->rota; ?>"'>Voltar <i class="fa fa-arrow-left icone-fa-left"></i></button>
+                            <button type="button" class="btn btn-danger" onclick='location.href = "<?= URL ?>"'>Voltar <i class="fa fa-arrow-left icone-fa-left"></i></button>
                             <div class="pull-right">
                                 <button type="submit" class="btn btn-block btn-primary" name="editar">Alterar <i class="fa fa-check icone-fa-left"></i></button>
                             </div>

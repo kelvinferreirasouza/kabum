@@ -1,4 +1,4 @@
-$(document).on('blur', '#cep', async function () {
+$(document).on('blur', '#cep', async function() {
     const cep = $(this).val();
 
     swal({
@@ -18,7 +18,7 @@ $(document).on('blur', '#cep', async function () {
 
         $("#estado").val(dadosCep.uf).change();
 
-        const cidade = $("#cidade option").filter(function () {
+        const cidade = $("#cidade option").filter(function() {
             return $(this).text().toUpperCase() === dadosCep.localidade.toUpperCase();
         }).first().attr("value");
 
@@ -30,35 +30,6 @@ $(document).on('blur', '#cep', async function () {
 
             for (let item in obj) {
                 if (obj[item].id == cidade) {
-                    $('#bairro').empty();
-                    $.ajax({
-                        url: url + "ajax/getBairrosByIdCidade/",
-                        dataType: 'json',
-                        method: 'POST',
-                        data: {
-                            'id_cidade': cidade,
-                        },
-                        async: false,
-                        success: function(result) {
-                            $('#bairro').empty();
-                            let obj = result;
-                            
-                            for (let item in obj) {
-                                if (bairro == obj[item].nome) {
-                                    $('#bairro').append($('<option>', {
-                                        value: obj[item].id,
-                                        text: obj[item].nome,
-                                        selected: 'selected'
-                                    }));
-                                } else {
-                                    $('#bairro').append($('<option>', {
-                                        value: obj[item].id,
-                                        text: obj[item].nome
-                                    }));
-                                }
-                            }
-                        }
-                    });
                     $('#cidade').append($('<option>', {
                         value: obj[item].id,
                         text: obj[item].nome,
@@ -84,7 +55,6 @@ $(document).on('blur', '#cep', async function () {
     }
 });
 
-
 function buscaDadosCep(cep) {
     return new Promise((resolve, reject) => {
         cep = cep.replace(/\D/g, '');
@@ -96,7 +66,7 @@ function buscaDadosCep(cep) {
                     url: "https://viacep.com.br/ws/" + cep + "/json",
                     type: 'GET',
                     dataType: 'json',
-                    success: function (dadosCep) {
+                    success: function(dadosCep) {
                         if (!("erro" in dadosCep)) {
                             resolve(dadosCep)
                         } else {
@@ -121,7 +91,7 @@ function buscaDadosCidadeEstado(cod_ibge) {
                 'cod_ibge': cod_ibge
             },
             async: false,
-            success: function (obj) {
+            success: function(obj) {
                 if (!obj.error) {
                     resolve(obj);
                 } else {

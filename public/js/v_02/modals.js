@@ -132,6 +132,14 @@ $('.btn-ativar-cliente').click(function() {
     $('.form-ativar').attr('action', url + "clientes/ativarcliente/" + id);
 });
 
+// MODAL EXCLUIR ENDERECO
+
+$('.btn-desativar-endereco').click(function() {
+    $('#desativa-endereco').modal('show');
+    var id = $(this).attr('id');
+    $('.form-desativar').attr('action', url + "clientes/excluirEndereco/" + id);
+});
+
 // MODAL ATIVAR/DESATIVAR PRAZO
 
 $('.btn-desativar-prazo').click(function() {

@@ -391,3 +391,9 @@
         min-height: 900px !important;
     }
 }
+
+.box-header>.box-tools {
+    position: absolute;
+    right: 0px;
+    top: 2px;
+}

@@ -2,13 +2,14 @@
 
 use Kabum\libs\Util;
 ?>
+
 <div class="content-wrapper">
     <section class="content container-fluid">
         <div class="row">
             <div class="col-xs-12 col-md-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title line-height-default">Clientes</h3>
+                        <h3 class="box-title line-height-default"><i class="fas fa-users icone-fa-right"></i> Clientes</h3>
                         <div class="pull-right">
                             <a href="<?= URL . $this->controller . '/adicionar/' ?>" class="btn btn-info">Adicionar <i class="fa fa-plus icone-fa-left"></i></a>
                         </div>
@@ -18,13 +19,20 @@ use Kabum\libs\Util;
                             <div class="form-group">
                                 <form action="<?= URL . $this->dir  ?>" method="GET">
                                     <div class="col-md-4">
-                                        <label>Buscar:</label>
+                                        <label>Nome:</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                            <input type="text" class="form-control" placeholder="Buscar" name="buscar" value="<?= (isset($_GET['buscar']) ? $_GET['buscar'] : ''); ?>">
+                                            <input type="text" class="form-control" placeholder="Ninja Kabum" name="buscar" value="<?= (isset($_GET['buscar']) ? $_GET['buscar'] : ''); ?>">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
+                                        <label>CPF:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="far fa-address-card"></i></span>
+                                            <input type="text" class="form-control" placeholder="000.000.000-00" name="cpf" cpf_mask value="<?= (isset($_GET['cpf']) ? $_GET['cpf'] : ''); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
                                         <label>Status:</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-check"></i></span>
@@ -48,9 +56,9 @@ use Kabum\libs\Util;
                             <thead>
                                 <th class="td-id">Cód.</th>
                                 <th>Nome</th>
-                                <th>CPF/CNPJ</th>
-                                <th>Contato</th>
-                                <th>UF / Cidade</th>
+                                <th>CPF</th>
+                                <th>RG</th>
+                                <th>Telefone</th>
                                 <th class="td-status">Status</th>
                                 <th class="td-acoes">Ações</th>
                             </thead>
@@ -60,12 +68,9 @@ use Kabum\libs\Util;
                                         <tr>
                                             <td class="text-center"><?= $cliente->id ?></td>
                                             <td><?= $cliente->nome ?></td>
-                                            <td><?= (strlen($cliente->cpf_cnpj) <= 11) ? Util::maskCpf($cliente->cpf_cnpj) : Util::maskCnpj($cliente->cpf_cnpj); ?></td>
+                                            <td><?= Util::maskCpf($cliente->cpf) ?></td>
+                                            <td><?= $cliente->rg ?></td>
                                             <td><?= Util::maskTelefone($cliente->telefone) ?></td>
-                                            <?php
-                                            $estado = $Estado->getEstadoByID($cliente->id_estado);
-                                            ?>
-                                            <td><?= $estado->uf . " / " . $cliente->nome_cidade;  ?></td>
                                             <?php if ($cliente->ativo == true) : ?>
                                                 <td class="text-center">
                                                     <span class="label label-success">Ativo</span>
@@ -91,7 +96,7 @@ use Kabum\libs\Util;
                                     <?php } ?>
                                 <?php } else { ?>
                                     <tr>
-                                        <td class="text-center" colspan="7">Nenhum cliente cadastrado.</td>
+                                        <td class="text-center" colspan="7">Nenhum cliente encontrado.</td>
                                     </tr>
                                 <?php } ?>
 

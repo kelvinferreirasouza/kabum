@@ -202,7 +202,6 @@ class ModelGenerico extends Model
 
     public function getItemByCampoGenericoOrdenacao($valor, $tabela, $campo, $order)
     {
-
         $sql = "SELECT * FROM {$tabela} WHERE {$campo} = :valor ORDER BY {$order}";
         $query = $this->db->prepare($sql);
         $parameters = array(':valor' => $valor);
@@ -259,53 +258,5 @@ class ModelGenerico extends Model
         $query->execute();
 
         return $query->fetchAll();
-    }
-
-    public function getItemByDoisParametros($tabela, $coluna_1, $valor_1, $coluna_2, $valor_2)
-    {
-        $sql = "SELECT * FROM 
-                    {$tabela} 
-                WHERE 
-                    {$coluna_1} = :valor_1
-                AND 
-                    {$coluna_2} = :valor_2";
-
-        $query = $this->db->prepare($sql);
-        $parameters = array(':valor_1' => $valor_1, ':valor_2' => $valor_2);
-        $query->execute($parameters);
-
-        return $query->fetch();
-    }
-
-    public function getItemByTresParametros($tabela, $coluna_1, $valor_1, $coluna_2, $valor_2, $coluna_3, $valor_3)
-    {
-        $sql = "SELECT * FROM 
-                    {$tabela} 
-                WHERE 
-                    {$coluna_1} = :valor_1 AND 
-                    {$coluna_2} = :valor_2 AND 
-                    {$coluna_3} = :valor_3";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':valor_1' => $valor_1, ':valor_2' => $valor_2, ':valor_3' => $valor_3);
-        $query->execute($parameters);
-
-        return $query->fetch();
-    }
-
-    public function getItemByUsersAndDates($id, $tabela)
-    {
-        $sql = "SELECT *, 
-                (SELECT us.nome FROM usuarios us WHERE us.id_usuario = x.id_usuario_cadastro)AS usuario_cadastro,
-                (SELECT us.nome FROM usuarios us WHERE us.id_usuario = x.id_usuario_atualizacao)AS usuario_atualizacao,
-                (SELECT DATE_FORMAT(x.data_atualizacao, '%d/%m/%Y %H:%i'))AS data_atualizado,
-                (SELECT DATE_FORMAT(x.data_cadastro, '%d/%m/%Y %H:%i'))AS data_cadastrado
-                FROM {$tabela} x 
-                WHERE x.id = :id";
-
-        $query = $this->db->prepare($sql);
-        $param = array(':id' => $id);
-        $query->execute($param);
-
-        return $query->fetch();
     }
 }
