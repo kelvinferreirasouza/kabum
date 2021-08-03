@@ -12,7 +12,6 @@ class AjaxController
 {
     public function __construct()
     {
-        header('Access-Control-Allow-Origin: *');
         date_default_timezone_set('America/Sao_Paulo');
     }
 
